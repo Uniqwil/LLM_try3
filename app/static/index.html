@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM_try3</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .message {
+            padding: 20px;
+            background: #eeeeee;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 70%;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>LLM_try3</h1>
+
+        <div class="message" id="response">
+            Hello from our first web page!
+        </div>
+
+        <input
+            type="text"
+            id="messageInput"
+            placeholder="Type something..."
+        >
+
+        <button id="sendButton">Send</button>
+    </div>
+
+    <script>
+        const input = document.getElementById("messageInput");
+        const button = document.getElementById("sendButton");
+        const response = document.getElementById("response");
+
+        button.addEventListener("click", async () => {
+            const message = input.value;
+
+            const result = await fetch("/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: message
+                })
+            });
+
+            const data = await result.json();
+
+            response.textContent = data.message;
+        });
+    </script>
+</body>
+</html>
