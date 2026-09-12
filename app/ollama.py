@@ -5,7 +5,7 @@ def chat_with_ollama(message: str) -> str:
     response = httpx.post(
         "http://127.0.0.1:11434/api/chat",
         json={
-            "model": "qwen3:14b-q4_K_M",
+            "model": "gemma3:12b",
             "messages": [
                 {
                     "role": "user",
@@ -13,7 +13,8 @@ def chat_with_ollama(message: str) -> str:
                 }
             ],
             "stream": False
-        }
+        },
+        timeout=120.0
     )
 
     data = response.json()
