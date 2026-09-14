@@ -124,3 +124,15 @@ cursor: pointer;
 #sendButton:hover {
 opacity: 0.8;
 }
+
+.message-stats {
+    display: none;
+    margin-top: 8px;
+    padding: 8px;
+    font-size: 12px;
+    white-space: pre-line;
+}
+
+.message-stats.visible {
+    display: block;
+}
